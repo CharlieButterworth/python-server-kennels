@@ -17,10 +17,10 @@ def get_all_locations():
 
 
 def get_single_location(id):
-    # Variable to hold the found animal, if it exists
+    # Variable to hold the found location, if it exists
     requested_location = None
 
-    # Iterate the ANIMALS list above. Very similar to the
+    # Iterate the LOCATIONS list above. Very similar to the
     # for..of loops you used in JavaScript.
     for location in LOCATIONS:
         # Dictionaries in Python use [] notation to find a key
