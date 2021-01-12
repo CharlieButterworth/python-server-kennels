@@ -25,10 +25,10 @@ def get_all_customers():
 
 
 def get_single_customer(id):
-    # Variable to hold the found animal, if it exists
+    # Variable to hold the found customer, if it exists
     requested_customer = None
 
-    # Iterate the ANIMALS list above. Very similar to the
+    # Iterate the CUSTOMERS list above. Very similar to the
     # for..of loops you used in JavaScript.
     for customer in CUSTOMERS:
         # Dictionaries in Python use [] notation to find a key
