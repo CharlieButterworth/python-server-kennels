@@ -114,17 +114,17 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         # Encode the new animal and send in response
 
-        if resource == "customers":
+        elif resource == "customers":
             new = create_customer(post_body)
 
         # Encode the new customer and send in response
 
-        if resource == "locations":
+        elif resource == "locations":
             new = create_location(post_body)
 
         # Encode the new location and send in response
 
-        if resource == "employees":
+        elif resource == "employees":
             new = create_employee(post_body)
 
         # Encode the new location and send in response
