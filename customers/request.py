@@ -87,6 +87,15 @@ def get_customers_by_email(email):
     return json.dumps(customers)
 
 
+def delete_customer(id):
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM customer
+        WHERE id = ?
+        """, (id, ))
+
 # def create_customer(customer):
 #     # Get the id value of the last customer in the list
 #     max_id = CUSTOMERS[-1]["id"]

@@ -135,6 +135,15 @@ def get_animal_by_status(status):
     return json.dumps(animals)
 
 
+def delete_animal(id):
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM animal
+        WHERE id = ?
+        """, (id, ))
+
 # def create_animal(animal):
 #     # Get the id value of the last animal in the list
 #     max_id = ANIMALS[-1]["id"]
