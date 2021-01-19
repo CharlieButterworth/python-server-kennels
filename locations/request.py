@@ -15,9 +15,9 @@ def get_all_locations():
         # Write the SQL query to get the information you want
         db_cursor.execute("""
         SELECT
+            l.id,
             l.name,
-            l.address,
-            l.id
+            l.address
         FROM location l
         """)
 
