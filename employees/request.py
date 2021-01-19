@@ -83,6 +83,15 @@ def get_employee_by_location(location):
     return json.dumps(employees)
 
 
+def delete_employee(id):
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        DELETE FROM employee
+        WHERE id = ?
+        """, (id, ))
+
 # def create_employee(employee):
 #     # Get the id value of the last employee in the list
 #     max_id = EMPLOYEES[-1]["id"]

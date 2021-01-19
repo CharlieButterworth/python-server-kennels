@@ -1,9 +1,9 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from animals import get_all_animals, get_single_animal, get_animal_by_location, get_animal_by_status
-from employees import get_all_employees, get_single_employee, get_employee_by_location
-from locations import get_all_locations, get_single_location
-from customers import get_all_customers, get_single_customer, get_customers_by_email
+from animals import get_all_animals, get_single_animal, get_animal_by_location, get_animal_by_status, delete_animal
+from employees import get_all_employees, get_single_employee, get_employee_by_location, delete_employee
+from locations import get_all_locations, get_single_location, delete_location
+from customers import get_all_customers, get_single_customer, get_customers_by_email, delete_customer
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
 # work together for a common purpose. In this case, that
@@ -190,27 +190,27 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 #     # here is the delete method
 
-#     def do_DELETE(self):
-#         # Set a 204 response code
-#         self._set_headers(204)
+    def do_DELETE(self):
+        # Set a 204 response code
+        self._set_headers(204)
 
-#     # Parse the URL
-#         (resource, id) = self.parse_url(self.path)
+    # Parse the URL
+        (resource, id) = self.parse_url(self.path)
 
-#     # Delete a single animal from the list
-#         if resource == "animals":
-#             delete_animal(id)
+    # Delete a single animal from the list
+        if resource == "animals":
+            delete_animal(id)
 
-#         if resource == "cutsomers":
-#             delete_customer(id)
+        if resource == "cutsomers":
+            delete_customer(id)
 
-#         if resource == "employees":
-#             delete_employee(id)
+        if resource == "employees":
+            delete_employee(id)
 
-#         if resource == "locations":
-#             delete_location(id)
-#     # Encode the new animal and send in response
-#         self.wfile.write("".encode())
+        if resource == "locations":
+            delete_location(id)
+    # Encode the new animal and send in response
+        self.wfile.write("".encode())
 
 # # This function is not inside the class. It is the starting
 # # point of this application.
