@@ -1,6 +1,8 @@
 import sqlite3
 import json
 from models import Animal
+from models import Location
+from models import Customer
 
 
 def get_all_animals():
@@ -19,8 +21,18 @@ def get_all_animals():
             a.breed,
             a.status,
             a.location_id,
-            a.customer_id
-        FROM animal a
+            a.customer_id,
+            l.name location_name,
+            l.address location_address,
+            c.name,
+            c.address,
+            c.email,
+            c.password
+        FROM Animal a
+        JOIN Location l
+            ON l.id = a.location_id
+        JOIN Customer c
+            on c.id = a.customer_id
         """)
 
         # Initialize an empty list to hold all animal representations
@@ -39,6 +51,18 @@ def get_all_animals():
             animal = Animal(row['id'], row['name'], row['breed'],
                             row['status'], row['location_id'],
                             row['customer_id'])
+
+            # Create a Location instance from the current row
+            location = Location(
+                row['location_id'], row['location_name'], row['location_address'])
+
+            customer = Customer(row['customer_id'],
+                                row['name'], row['address'], row['email'], row['password'], )
+
+            # Add the dictionary representation of the location to the animal
+            animal.location = location.__dict__
+
+            animal.customer = customer.__dict__
 
             animals.append(animal.__dict__)
 
@@ -130,6 +154,9 @@ def get_animal_by_status(status):
         for row in dataset:
             animal = Animal(row['id'], row['name'], row['breed'],
                             row['status'], row['location_id'], row['customer_id'])
+
+            # Add the dictionary representation of the location to the animal
+
             animals.append(animal.__dict__)
 
     return json.dumps(animals)
